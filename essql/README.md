@@ -12,6 +12,7 @@ uri := Select([]Tweet{}).From("idx_twitter").
         Like("name", "otiai"),
         Range("age", 25, 35),
         Must("lang", "golang"),
+        In("city",   "Tokyo", "Boston"),
     ).
     OrderBy(
         Desc("created"),
@@ -44,7 +45,13 @@ uri.Body().Map()    // map[string]interface{}
                         },
                         "term: {
                             "lang": "golang"
-                        }
+                        },
+                        "terms": {
+                            "city": [
+                                "Tokyo", "Boston"
+                            ],
+                            "execution": "or"
+                        },
                     }
                 ]
             }
