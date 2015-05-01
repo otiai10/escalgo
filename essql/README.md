@@ -8,15 +8,15 @@ Examples
 
 ```go
 uri := Select([]Tweet{}).From("idx_twitter").
-    Where(
-        Like("name", "otiai"),
-        Range("age", 25, 35),
-        Must("lang", "golang"),
-        In("city",   "Tokyo", "Boston"),
-    ).
-    OrderBy(
-        Desc("created"),
-    ).
+    Where(Clause{
+        "name": Like("otiai"),
+        "age":  Range(25, 35),
+        "lang": Must("golang"),
+        "city": In("Tokyo", "Boston"),
+    }).
+    OrderBy(Clause{
+        "created": Desc(),
+    }).
     Limit(10).Offset(20).
     Pretty()
 
