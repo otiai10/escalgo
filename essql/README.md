@@ -7,7 +7,7 @@ Examples
 ============
 
 ```go
-uri := Select([]Tweet{}).From("idx_twitter").
+req := Select([]Tweet{}).From("idx_twitter").
     Where(Clause{
         "name": Like("otiai"),
         "age":  Range(25, 35),
@@ -20,11 +20,11 @@ uri := Select([]Tweet{}).From("idx_twitter").
     Limit(10).Offset(20).
     Pretty()
 
-uri.Path()          // "/idx_twitter/tweet/_search"
-uri.Query()         // "?size=10&from=20&pretty=1"
-uri.Body().String() // json string
-uri.Body().Bytes()  // []byte of json string
-uri.Body().Map()    // map[string]interface{}
+req.Path()          // "/idx_twitter/tweet/_search"
+req.Query()         // "?size=10&from=20&pretty=1"
+req.Body().String() // json string
+req.Body().Bytes()  // []byte of json string
+req.Body().Map()    // map[string]interface{}
 /*
 {
     "query": {
