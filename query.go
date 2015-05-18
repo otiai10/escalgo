@@ -1,22 +1,20 @@
-package esql
+package escalgo
 
-// Query ...
-func Query() Serializer {
-	leaf := &Leaf{
-		name:     "query",
-		Children: map[string]Serializer{},
-	}
-	return leaf
+type Query struct {
+	Map map[string]interface{}
 }
 
-// Query ...
-func (d *Leaf) Query(s Serializer) Serializer {
-	leaf := &Leaf{
-		name: "query",
-		Children: map[string]Serializer{
-			s.Name(): s,
+func NewQuery() *Query {
+	return &Query{
+		Map: map[string]interface{}{
+			"query": map[string]interface{}{},
 		},
 	}
-	d.Children["query"] = leaf
-	return d
+}
+
+func (query *Query) MatchAll() *Query {
+	query.Map["query"] = map[string]interface{}{
+		"match_all": map[string]interface{}{},
+	}
+	return query
 }

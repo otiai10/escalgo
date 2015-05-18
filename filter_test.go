@@ -1,4 +1,4 @@
-package sdsl
+package escalgo
 
 import (
 	"testing"
@@ -6,6 +6,6 @@ import (
 	. "github.com/otiai10/mint"
 )
 
-func TestSearchDSL(t *testing.T) {
+func TestFilter(t *testing.T) {
 	Expect(t, true).ToBe(true)
 }

@@ -1,6 +1,7 @@
-package esql
+package escalgo
 
-// Filter ...
-func Filter(serializers ...Serializer) Serializer {
-	return createLeaf("filter", serializers)
+type Filter struct{}
+
+func NewFilter() *Filter {
+	return &Filter{}
 }
