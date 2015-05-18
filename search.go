@@ -15,5 +15,5 @@ func Search() *SearchRoot {
 }
 
 func (root *SearchRoot) Marshal() ([]byte, error) {
-    return []byte{}, nil
+	return []byte{}, nil
 }
