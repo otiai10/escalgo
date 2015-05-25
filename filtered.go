@@ -20,12 +20,16 @@ type Filtered struct {
 }
 
 func (filtered *Filtered) Query() *Filtered {
-	filtered.Queries = NewQuery()
+	if filtered.Queries == nil {
+		filtered.Queries = NewQuery()
+	}
 	return filtered
 }
 
 func (filtered *Filtered) Bool() *Filtered {
-	filtered.Queries.Bool = &Bool{}
+	if filtered.Queries.Bool == nil {
+		filtered.Queries.Bool = &Bool{}
+	}
 	return filtered
 }
 
