@@ -1,4 +1,4 @@
-esdsl/essql
+escalgo/esql
 ============
 
 SQL like syntax sugar for Elasticsearch Query DSL
