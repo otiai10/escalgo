@@ -14,7 +14,7 @@ func TestSearchDSL(t *testing.T) {
 	Expect(t, err).ToBe(nil)
 	Expect(t, string(b)).ToBe(`{}`)
 
-	search.Set([]Sortable{&Sort{"hoge", true}, &Sort{"fuga", false}})
+	search.Set([]Sortable{Sort{"hoge", true}, Sort{"fuga", false}})
 	b, err = json.Marshal(search)
 	Expect(t, err).ToBe(nil)
 	Expect(t, string(b)).ToBe(`{"sort":[{"hoge":"desc"},"fuga"]}`)

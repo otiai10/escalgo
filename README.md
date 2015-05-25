@@ -56,7 +56,7 @@ filtered := &Filtered{}
 filtered.Query().Bool().Should(Terms{"lang", []string{"go", "js"}})
 filtered.Query().Bool().Should(MultiMatch{"japan anime", []string{"hobby", "description"}})
 
-sorts := []Sortable{&Sort{Field: "created", Desc: true}}
+sorts := []Sortable{Sort{Field: "created", Desc: true}}
 
 search.Set(filtered)
 search.Set(sorts)

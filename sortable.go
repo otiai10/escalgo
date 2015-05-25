@@ -17,7 +17,7 @@ type Sort struct {
 }
 
 // MarshalJSON implements Sortable.
-func (s *Sort) MarshalJSON() ([]byte, error) {
+func (s Sort) MarshalJSON() ([]byte, error) {
 	if s.Desc {
 		return json.Marshal(map[string]string{s.Field: "desc"})
 	}
