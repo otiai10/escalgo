@@ -5,12 +5,10 @@ import "encoding/json"
 // Queries represents a node for `"query": {}`.
 // MustAll
 type Queries struct {
-	isMatchAll bool            `json:"-"`
-	Only       Queryable       `json:",omitempty"` // embed Queryable
-	Bool       CombinableQuery `json:"bool,omitempty"`
-	Shoulds    []Queryable     `json:"should,omitempty"`
-	Musts      []Queryable     `json:"must,omitempty"`
-	Filtered   *Filtered       `json:"filtered,omitempty"`
+	isMatchAll bool      `json:"-"`
+	Only       Queryable `json:",omitempty"` // embed Queryable
+	Bool       *Bool     `json:"bool,omitempty"`
+	Filtered   *Filtered `json:"filtered,omitempty"`
 }
 
 // NewQuery initalize "query" node.
