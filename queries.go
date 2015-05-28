@@ -49,10 +49,6 @@ func (queries *Queries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(map[string]interface{}{})
 }
 
-func (queries *Queries) MarshalQuery() ([]byte, error) {
-	return queries.MarshalJSON()
-}
-
 func (queries *Queries) Set(node interface{}) Queryable {
 	switch n := node.(type) {
 	case *Filtered:

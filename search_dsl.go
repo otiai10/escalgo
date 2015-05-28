@@ -2,35 +2,24 @@ package escalgo
 
 // SearchDSL is root node for /_search request body.
 type SearchDSL struct {
-	Sorts         []Sortable `json:"sort,omitempty"`
-	FilteredQuery *Filtered  `json:"query,omitempty"`       //
-	PreQuery      Queryable  `json:"query,omitempty"`       // query on root.
-	PostFilter    Filterable `json:"post_filter,omitempty"` //
+	Query      Queryable  `json:"query,omitempty"`
+	Sort       []Sortable `json:"sort,omitempty"`
+	PostFilter Filterable `json:"post_filter,omitempty"`
 }
 
 // Search ...
-func Search(targets ...string) *SearchDSL {
+func Search(defs ...string) *SearchDSL {
 	return &SearchDSL{}
 }
 
-// Query ...
-func (search *SearchDSL) Query(queryable Queryable) *SearchDSL {
-	// omit conflicted "query" field.
-	search.FilteredQuery = nil
-	// set new "query" field.
-	search.PreQuery = queryable
-	return search
-}
-
-// Filtered ...
-func (search *SearchDSL) Filtered(filtered *Filtered) *SearchDSL {
-	search.PreQuery = nil
-	search.FilteredQuery = filtered
-	return search
-}
-
-// Sort ...
-func (search *SearchDSL) Sort(sortables []Sortable) *SearchDSL {
-	search.Sorts = sortables
+// Set is setter for field for root.
+func (search *SearchDSL) Set(node interface{}) *SearchDSL {
+	switch n := node.(type) {
+	case []Sortable:
+		search.Sort = n
+	case *Filtered:
+		search.Query = NewQuery()
+		search.Query.Set(n)
+	}
 	return search
 }
