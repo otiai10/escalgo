@@ -1,17 +1,9 @@
 package escalgo
 
-// Filtered ...
+// Filtered provide `{"filtered":{"query":{},"filter":{}}}`.
+// Because it can be a child of query (on the root),
 type Filtered struct {
 	Queries *Queries `json:"query,omitempty"`
-	/*
-		Queries *struct {
-			Bool *struct {
-				Shoulds []Queryable `json:"should,omitempty"`
-				Musts   []Queryable `json:"must,omitempty"`
-			} `json:"bool,omitempty"`
-			Queryable `json:",omitempty"`
-		} `json:"query,omitempty"`
-	*/
 	Filters *struct {
 		Ands       []Filterable `json:"and,omitempty"`
 		Ors        []Filterable `json:"or,omitempty"`
@@ -19,6 +11,7 @@ type Filtered struct {
 	} `json:"filter,omitempty"`
 }
 
+// Query ...
 func (filtered *Filtered) Query() *Filtered {
 	if filtered.Queries == nil {
 		filtered.Queries = NewQuery()
@@ -26,6 +19,7 @@ func (filtered *Filtered) Query() *Filtered {
 	return filtered
 }
 
+// Bool ...
 func (filtered *Filtered) Bool() *Filtered {
 	if filtered.Queries.Bool == nil {
 		filtered.Queries.Bool = &Bool{}
@@ -33,6 +27,7 @@ func (filtered *Filtered) Bool() *Filtered {
 	return filtered
 }
 
+// Should ...
 func (filtered *Filtered) Should(queryables ...Queryable) *Filtered {
 	filtered.Queries.Bool.Should(queryables...)
 	return filtered
