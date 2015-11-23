@@ -6,6 +6,14 @@ package escalgo
 //     - [ ] and
 //     - [ ] bool
 //   - [ ] Filterable Element: is SPECIFIED filter element.
+//     - [ ] exists
+//     - [ ] geo_bounding_box
+//     - [ ] geo_distance
+//     - [ ] geo_distance_range
+//     - [ ] geo_polygon
+//     - [ ] geo_shape
+//     - [ ] has_child
+//     - [ ] has_parent
 //   - [ ] Others: TODO :(
 //     - [ ] constant_score
 //     - [ ] nested
